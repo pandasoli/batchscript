@@ -27,7 +27,8 @@ func TestNext(t *testing.T) {
     {token.Space, " "},
     {token.Number, "2"},
     {token.NewLine, "\n"},
-    {token.EOF, ""},
+    {token.NewLine, "\n"},
+    {token.EOF, "\x00"},
   }
 
   lexer := New(input)

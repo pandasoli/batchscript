@@ -63,7 +63,7 @@ func (self *Lexer) read(buffer *bytes.Buffer, test func(byte)bool) {
 func (self *Lexer) Lex() token.Token {
   self.next()
 
-  buffer := bytes.NewBufferString(string([]byte { self.current, 0 }))
+  buffer := bytes.NewBufferString(string(self.current))
   position := self.position
   var kind token.TokenKind = token.Illegal
 
