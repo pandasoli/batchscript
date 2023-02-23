@@ -2,6 +2,7 @@ package lexer
 
 import (
   "batchscript/token"
+  "batchscript/error"
 
   "bytes"
 )
@@ -12,11 +13,13 @@ type Lexer struct {
   position int
   nextPosition int
   current byte
+  Diagnostics error.DiagnosticBag
 }
 
 func New(text string) *Lexer {
   lexer := &Lexer {
     text: text,
+    Diagnostics: error.NewDiagnosticBag(nil),
   }
 
   return lexer
@@ -89,6 +92,8 @@ func (self *Lexer) Lex() token.Token {
       } else if isDigit(self.current) {
         self.read(buffer, isDigit)
         kind = token.Number
+      } else {
+        self.Diagnostics.ReportIllegalCharacter(position, self.current)
       }
   }
 

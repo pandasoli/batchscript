@@ -31,5 +31,9 @@ func main() {
         break
       }
     }
+
+    if len(lex.Diagnostics.Diags) > 0 {
+      lex.Diagnostics.Print(line)
+    }
   }
 }
