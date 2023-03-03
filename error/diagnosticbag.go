@@ -1,7 +1,7 @@
 package error
 
 import (
-  "batchscript/token"
+  "batchscript/lexer/token"
 
   "fmt"
 )

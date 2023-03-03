@@ -1,7 +1,7 @@
 package lexer
 
 import (
-  "batchscript/token"
+  "batchscript/lexer/token"
   "batchscript/error"
 
   "bytes"

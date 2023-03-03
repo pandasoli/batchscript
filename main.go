@@ -2,7 +2,7 @@ package main
 
 import (
   "batchscript/lexer"
-  "batchscript/token"
+  "batchscript/lexer/token"
 
   "bufio"
   "fmt"

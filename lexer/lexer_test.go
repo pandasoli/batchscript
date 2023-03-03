@@ -2,7 +2,7 @@ package lexer
 
 import (
   "testing"
-  "batchscript/token"
+  "batchscript/lexer/token"
 )
 
 func TestNext(t *testing.T) {
