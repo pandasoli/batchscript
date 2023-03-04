@@ -1,17 +1,19 @@
-package error
+package diagnosticbag
 
 import (
   "batchscript/lexer/token"
+  "batchscript/error/diagnostic"
+  "batchscript/error/textspan"
 
   "fmt"
 )
 
 
 type DiagnosticBag struct {
-  Diags []Diagnostic
+  Diags []diagnostic.Diagnostic
 }
 
-func NewDiagnosticBag(from *DiagnosticBag) DiagnosticBag {
+func New(from *DiagnosticBag) DiagnosticBag {
   res := DiagnosticBag {}
 
   if from != nil {
@@ -41,19 +43,19 @@ func (self *DiagnosticBag) Print(code string) {
   fmt.Println()
 }
 
-func (self *DiagnosticBag) report(span TextSpan, msg string) {
-  diag := NewDiagnostic(span, msg)
+func (self *DiagnosticBag) report(span textspan.TextSpan, msg string) {
+  diag := diagnostic.New(span, msg)
   self.Diags = append(self.Diags, diag)
 }
 
 func (self *DiagnosticBag) ReportIllegalCharacter(pos int, char byte) {
-  span := NewTextSpan(pos, 1)
+  span := textspan.New(pos, 1)
   msg := "Illegal character input: '" + string(char) + "'"
 
   self.report(span, msg)
 }
 
-func (self *DiagnosticBag) ReportUnexpectedToken(span TextSpan, kind token.TokenKind, expected token.TokenKind) {
+func (self *DiagnosticBag) ReportUnexpectedToken(span textspan.TextSpan, kind token.TokenKind, expected token.TokenKind) {
   msg := string("Unexpected token " + kind + ", expected " + expected)
 
   self.report(span, msg)

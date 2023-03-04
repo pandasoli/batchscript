@@ -2,7 +2,7 @@ package lexer
 
 import (
   "batchscript/lexer/token"
-  "batchscript/error"
+  "batchscript/error/diagnosticbag"
 
   "bytes"
 )
@@ -13,13 +13,13 @@ type Lexer struct {
   position int
   nextPosition int
   current byte
-  Diagnostics error.DiagnosticBag
+  Diagnostics diagnosticbag.DiagnosticBag
 }
 
 func New(text string) *Lexer {
   lexer := &Lexer {
     text: text,
-    Diagnostics: error.NewDiagnosticBag(nil),
+    Diagnostics: diagnosticbag.New(nil),
   }
 
   return lexer

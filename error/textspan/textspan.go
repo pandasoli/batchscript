@@ -1,4 +1,4 @@
-package error
+package textspan
 
 
 type TextSpan struct {
@@ -7,7 +7,7 @@ type TextSpan struct {
   End int
 }
 
-func NewTextSpan(start int, length int) TextSpan {
+func New(start int, length int) TextSpan {
   return TextSpan {
     Start: start,
     Length: length,
@@ -15,7 +15,7 @@ func NewTextSpan(start int, length int) TextSpan {
   }
 }
 
-func NewTextSpanFromBounds(start int, end int) TextSpan {
+func NewFromBounds(start int, end int) TextSpan {
   return TextSpan {
     Start: start,
     Length: end - start,
