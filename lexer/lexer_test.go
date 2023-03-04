@@ -6,8 +6,9 @@ import (
 )
 
 func TestNext(t *testing.T) {
-  input := `set /a math=12 * 2
-
+  input :=
+`set /a math=12 * 2
+echo abcde
 `
 
   tests := [] struct {
@@ -27,6 +28,10 @@ func TestNext(t *testing.T) {
     {token.Space, " "},
     {token.Number, "2"},
     {token.NewLine, "\n"},
+
+    {token.Identifier, "echo"},
+    {token.Space, " "},
+    {token.Identifier, "abcde"},
     {token.NewLine, "\n"},
     {token.EOF, "\x00"},
   }
