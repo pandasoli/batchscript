@@ -15,23 +15,23 @@ echo abcde
     kind token.TokenKind
     literal string
   } {
-    {token.Identifier, "set"},
+    {token.Text, "set"},
     {token.Space, " "},
     {token.Slash, "/"},
-    {token.Identifier, "a"},
+    {token.Text, "a"},
     {token.Space, " "},
-    {token.Identifier, "math"},
+    {token.Text, "math"},
     {token.Assign, "="},
-    {token.Number, "12"},
+    {token.Text, "12"},
     {token.Space, " "},
     {token.Star, "*"},
     {token.Space, " "},
-    {token.Number, "2"},
+    {token.Text, "2"},
     {token.NewLine, "\n"},
 
-    {token.Identifier, "echo"},
+    {token.Text, "echo"},
     {token.Space, " "},
-    {token.Identifier, "abcde"},
+    {token.Text, "abcde"},
     {token.NewLine, "\n"},
     {token.EOF, "\x00"},
   }

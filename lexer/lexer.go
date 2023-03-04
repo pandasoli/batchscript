@@ -1,10 +1,11 @@
 package lexer
 
 import (
-  "batchscript/lexer/token"
-  "batchscript/error/diagnosticbag"
+	"batchscript/error/diagnosticbag"
+	"batchscript/lexer/token"
+	"strings"
 
-  "bytes"
+	"bytes"
 )
 
 
@@ -26,12 +27,8 @@ func New(text string) *Lexer {
 }
 
 
-func isLetter(ch byte) bool {
-  return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
-}
-
-func isDigit(ch byte) bool {
-  return '0' <= ch && ch <= '9'
+func isText(ch byte) bool {
+  return !strings.Contains("+-=*/() \n", string(ch))
 }
 
 
@@ -89,15 +86,8 @@ func (self *Lexer) Lex() token.Token {
     case ')': kind = token.RightParen
 
     default:
-      if isLetter(self.current) {
-        self.read(buffer, isLetter)
-        kind = token.Identifier
-      } else if isDigit(self.current) {
-        self.read(buffer, isDigit)
-        kind = token.Number
-      } else {
-        self.Diagnostics.ReportIllegalCharacter(position, self.current)
-      }
+      self.read(buffer, isText)
+      kind = token.Text
   }
 
   return token.New(kind, buffer.String(), position, buffer.Len() - 1)

@@ -9,9 +9,8 @@ const (
   NewLine = "NewLine"
   Space = "Space"
 
-  // Identifiers and literals
-  Identifier = "Id"
-  Number = "Int"
+  // Literals
+  Text = "Text"
 
   // Operators
   Assign = "Assign"
