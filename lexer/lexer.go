@@ -73,7 +73,10 @@ func (self *Lexer) Lex() token.Token {
   switch self.current {
     case 0: kind = token.EOF
 
-    case ' ': kind = token.Space
+    case ' ':
+      self.read(buffer, func (ch byte) bool { return ch == ' ' })
+      kind = token.Space
+      break
     case '\n': kind = token.NewLine
 
     case '+': kind = token.Plus
